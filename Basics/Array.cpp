@@ -1,5 +1,7 @@
 #include <iostream>
 #include <iterator> // for size() function
+#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
 /*
@@ -11,24 +13,22 @@ int main(){
     }
     return 0;
 }
-*/
 
-/* Array function that outputs even indexes only and odd indexes only, and also outputs the total sum of the values
+
+//Array function that outputs even indexes only and odd indexes only, and also outputs the total sum of the values
 int main() {
     int A[10] = {11,22,3,4,999,6,8,9,10,11};
 
+    cout << A[1] << endl;
+
     cout << "Even Index" << endl;
-    for (int i = 0; i < 10; i++) {
-        if ( i%2 == 0) {
-            cout << "[" << i << "] : "<<  A[i] << endl;
-        }
+    for (int i = 0; i < 10; i=i+2) {
+      cout << "[" << i << "] : "<<  A[i] << endl;
     }
 
     cout << "Odd Index" << endl;
-    for (int i = 0; i < 10; i++) {
-        if ( i%2 != 0) {
-            cout << "[" << i << "] : "<<  A[i] << endl;
-        }
+    for (int i = 1; i < 10; i=i+2) {
+      cout << "[" << i << "] : "<<  A[i] << endl;
     }
     //Instead of using if function, can change the conditions in 'for loop' to;
     //Even : (int i=0; i<10; i+=2)
@@ -45,9 +45,9 @@ int main() {
     
     return 0;
 }
-*/
+    
 
-// Array movements
+//Array movements
 int main(){
     int A[6] = {10,1,2,3,4,5};
     int B[6];
@@ -72,6 +72,51 @@ int main(){
     }
 
     return 0;
-}
+    }
+    */
+   
+    // Bubble Sort Algorithm, compare 2 elements and swap if needed, then continue to next pair. Repeat for next array pass until sorted
+   int bubble (int array[5], int size) {
+        for (int step=0; step < size; step++) { // loop for whole array
+       for (int i=0; i < size-step-1; i++) { // element stepping
+           if (array[i] > array[i+1]) { // Comparing if element n is bigger than element n+1
+               swap(array[i], array[i+1]);
+           }
+       }
+      }
+      return array[5];
+   }
 
+   // Insertion Sort
+   int insertion (int array[5],int size) {
+    for (int i=1; i<size; ++i) {
+        int key = array[i]; // Last sorted element
+        int j = i-1; // all previous elements before key
+        while (j >= 0 && array[j] > key) {
+            array[j+1] = array[j]; // Shifting elements
+            j -= 1;
+        }
+        array[j+1] = key; // Setting new key
+    }
+    return array[5];
+   }
+
+   int main () {
+    int array[5] = {3,2,5,1,4};
+    int size = 5;
+
+    cout << "Unsorted Array : \n";
+    for (int i=0; i<=4; i++) {
+        cout << array[i] <<" \t";
+    }
+    cout << endl;
+
+    insertion(array, size);
+
+   cout << "Sorted Array : \n";
+    for (int i=0; i<=4; i++) {
+        cout << array[i] <<" \t";
+    }
+    return 0;
+}
 
