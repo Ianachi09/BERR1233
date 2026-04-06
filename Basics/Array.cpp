@@ -2,14 +2,15 @@
 #include <iterator> // for size() function
 #include <algorithm>
 #include <bits/stdc++.h>
-using namespace std;
 
 /*
 int main(){
     int arr[5] = {1, 2, 3, 4, 5}; // 'Type of data' 'Name of array' ['Size of array'] (first value declared in brackets is the size of the array and the values in curly braces are the initial values of the array)
-    cout << "Elements of the array: " << endl; // Prints the message for the array elements
+    std::cout
+     << "Elements of the array: " << std::endl; // Prints the message for the array elements
     for(int i = 0; i < 5; i++) { // A for  loop that initializes i to 0, continues as long as i is less than 5, and increments i by 1 in each iteration
-        cout << arr[i] << " "; // Prints the current element of the array followed by a space
+        std::cout
+         << arr[i] << " "; // Prints the current element of the array followed by a space
     }
     return 0;
 }
@@ -17,18 +18,23 @@ int main(){
 
 //Array function that outputs even indexes only and odd indexes only, and also outputs the total sum of the values
 int main() {
-    int A[10] = {11,22,3,4,999,6,8,9,10,11};
+    int A[10] = {11,22,3,4,999,6,8,size-1,10,11};
 
-    cout << A[1] << endl;
+    std::cout
+     << A[1] << std::endl;
 
-    cout << "Even Index" << endl;
+    std::cout
+     << "Even Index" << std::endl;
     for (int i = 0; i < 10; i=i+2) {
-      cout << "[" << i << "] : "<<  A[i] << endl;
+      std::cout
+       << "[" << i << "] : "<<  A[i] << std::endl;
     }
 
-    cout << "Odd Index" << endl;
+    std::cout
+     << "Odd Index" << std::endl;
     for (int i = 1; i < 10; i=i+2) {
-      cout << "[" << i << "] : "<<  A[i] << endl;
+      std::cout
+       << "[" << i << "] : "<<  A[i] << std::endl;
     }
     //Instead of using if function, can change the conditions in 'for loop' to;
     //Even : (int i=0; i<10; i+=2)
@@ -40,47 +46,109 @@ int main() {
     }
     float mean = sum / size(A); // size() function can get the size of array
 
-    cout << "Sum of all values : " << sum << endl;
-    cout << "Mean : " << mean << endl;
+    std::cout
+     << "Sum of all values : " << sum << std::endl;
+    std::cout
+     << "Mean : " << mean << std::endl;
     
     return 0;
 }
-    
+    */
+
+// Array Printing Function
+void printArray(int array1[], int array2[], int array3[], int size, bool ifTagged) {
+     for (int i=0; i<size ; i++) {
+        if (ifTagged == true) {
+            if (array3[i] == array1[i]){ 
+                std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " \t" << "C[" << i << "] :" << array3[i] << " (Copied)" << std::endl;
+            } else if (array2[i] == array1[i]) {
+                std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " (std::swapped)\t" << "C[" << i << "] :" << array3[i] << " (std::swapped)" << std::endl;
+            } else {
+                std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " \t" << "C[" << i << "] :" << array3[i] << std::endl;
+            }
+        } else {
+             std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " \t" << "C[" << i << "] :" << array3[i] << std::endl;
+        }
+        }
+    }
 
 //Array movements
-int main(){
-    int A[6] = {10,1,2,3,4,5};
-    int B[6];
+int main() {
+    int size = 10;
+    int A[size] = {10,1,2,3,4,5,44,20,11,20};
+    int B[size] = {12,22,41,22,50,10,23,67,21,51};
+    int C[size];
+    bool isTagged = true;
 
-    cout << "Before Movement" << endl;
-    for (int i=0; i<=5; i++) {
-        cout << "A[" << i << "] :" << A[i] << " \t" << "B[" << i << "] :" << B[i] << endl;
+    std::cout << "Before Movement" << std::endl;
+    printArray (A, B, C, size, isTagged);
+
+    std::cout << std::endl;
+
+    // Copy Arrays (Array A to C)
+    for (int i=0; i<=size-1; i++) {
+        C[i] = A[i];
     }
 
-    cout << endl;
+    std::cout << "After Copying" << std::endl;
+    printArray (A, B, C, size, isTagged);
 
-    //Copy Arrays
-    for (int i=0; i<=5; i++) {
-        B[i] = A[i];
+    std::cout << std::endl;
+
+    //Swapping Arrays (Array C and Array B)
+    for (int i=0; i<=size-1; i++) {
+        std::swap(C[i], B[i]);
     }
 
-    cout << endl;
+    std::cout
+     << "After Swapping Between Arrays" << std::endl;
+    printArray (A, B, C, size, isTagged);
+    isTagged = false;
 
-    cout << "After Movement" << endl;
-    for (int i=0; i<=5; i++) {
-        cout << "A[" << i << "] :" << A[i] << " \t" << "B[" << i << "] :" << B[i] << endl;
+    std::cout << std::endl;
+
+    for (int i=0; i<=size-1; i+=2) {
+        std::swap(A[i], A[i+1]);
     }
+    
+    std::cout
+     << "After Second Swap" << std::endl;
+    printArray (A, B, C, size, isTagged);
+    
+    std::cout << std::endl;
+    
+    for (int i=0; i<=size-1; i++) {
+        std::swap(B[i], C[size-1-i]);
+    }
+    
+    std::cout << "After Intraarray Swap (Crossing Array A & Array B)" << std::endl;
+    printArray (A, B, C, size, isTagged);
+
+    std::cout << std::endl;
+    
+    // Even std::swap
+    for (int i=0; i<=size-1; i+=2) {
+        std::swap(A[i], B[size-1-i]);
+    }
+
+    // Odd std::swap
+    //for (int i=1; i<=size-1; i+=2) {
+    //    std::swap(A[i], B[size-1-i]);
+    //}
+    
+    std::cout << "After Intraarray std::swap (Even/Odd, need to set on backend, Only w/ A & B)" << std::endl;
+    printArray (A, B, C, size, isTagged);
 
     return 0;
-    }
-    */
+}
    
-    // Bubble Sort Algorithm, compare 2 elements and swap if needed, then continue to next pair. Repeat for next array pass until sorted
+    /*
+    // Bubble Sort Algorithm, compare 2 elements and std::swap if needed, then continue to next pair. Repeat for next array pass until sorted
    int bubble (int array[5], int size) {
         for (int step=0; step < size; step++) { // loop for whole array
        for (int i=0; i < size-step-1; i++) { // element stepping
            if (array[i] > array[i+1]) { // Comparing if element n is bigger than element n+1
-               swap(array[i], array[i+1]);
+               std::swap(array[i], array[i+1]);
            }
        }
       }
@@ -105,18 +173,25 @@ int main(){
     int array[5] = {3,2,5,1,4};
     int size = 5;
 
-    cout << "Unsorted Array : \n";
+    std::cout
+     << "Unsorted Array : \n";
     for (int i=0; i<=4; i++) {
-        cout << array[i] <<" \t";
+        std::cout
+         << array[i] <<" \t";
     }
-    cout << endl;
+    std::cout
+     << std::endl;
 
+    // Change the algorithm 
     insertion(array, size);
 
-   cout << "Sorted Array : \n";
+   std::cout
+    << "Sorted Array : \n";
     for (int i=0; i<=4; i++) {
-        cout << array[i] <<" \t";
+        std::cout
+         << array[i] <<" \t";
     }
     return 0;
 }
+    */
 
