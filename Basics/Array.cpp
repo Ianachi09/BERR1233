@@ -3,15 +3,31 @@
 #include <algorithm>
 #include <bits/stdc++.h>
 
+// Custom Swap function
+void swapValues(int &num1, int &num2) {
+    int temp= num1;
+    num1 = num2;
+    num2 = temp;
+    }
+    
 /*
 int main(){
+    int B[5] = {6, 7, 8, 9, 10};
     int arr[5] = {1, 2, 3, 4, 5}; // 'Type of data' 'Name of array' ['Size of array'] (first value declared in brackets is the size of the array and the values in curly braces are the initial values of the array)
-    std::cout
-     << "Elements of the array: " << std::endl; // Prints the message for the array elements
+    std::cout << "Elements of the array: " << std::endl; // Prints the message for the array elements
     for(int i = 0; i < 5; i++) { // A for  loop that initializes i to 0, continues as long as i is less than 5, and increments i by 1 in each iteration
-        std::cout
-         << arr[i] << " "; // Prints the current element of the array followed by a space
+        std::cout << arr[i] << " "; // Prints the current element of the array followed by a space
     }
+
+    for(int i = 0; i < 5; i++) { // A for  loop that initializes i to 0, continues as long as i is less than 5, and increments i by 1 in each iteration
+        swapValues(arr[i], B[i]); // Prints the current element of the array followed by a space
+    }
+
+    std::cout << "Elements of the array (swapped): " << std::endl;
+    for(int i = 0; i < 5; i++) { // A for  loop that initializes i to 0, continues as long as i is less than 5, and increments i by 1 in each iteration
+        std::cout << arr[i] << " "; // Prints the current element of the array followed by a space
+    }
+
     return 0;
 }
 
@@ -62,7 +78,7 @@ void printArray(int array1[], int array2[], int array3[], int size, bool ifTagge
             if (array3[i] == array1[i]){ 
                 std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " \t" << "C[" << i << "] :" << array3[i] << " (Copied)" << std::endl;
             } else if (array2[i] == array1[i]) {
-                std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " (std::swapped)\t" << "C[" << i << "] :" << array3[i] << " (std::swapped)" << std::endl;
+                std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " (swapValuesped)\t" << "C[" << i << "] :" << array3[i] << " (swapValuesped)" << std::endl;
             } else {
                 std::cout << "A[" << i << "] :" << array1[i] << " \t" << "B[" << i << "] :" << array2[i] << " \t" << "C[" << i << "] :" << array3[i] << std::endl;
             }
@@ -97,7 +113,7 @@ int main() {
 
     //Swapping Arrays (Array C and Array B)
     for (int i=0; i<=size-1; i++) {
-        std::swap(C[i], B[i]);
+        swapValues(C[i], B[i]);
     }
 
     std::cout
@@ -108,7 +124,7 @@ int main() {
     std::cout << std::endl;
 
     for (int i=0; i<=size-1; i+=2) {
-        std::swap(A[i], A[i+1]);
+        swapValues(A[i], A[i+1]);
     }
     
     std::cout
@@ -118,7 +134,7 @@ int main() {
     std::cout << std::endl;
     
     for (int i=0; i<=size-1; i++) {
-        std::swap(B[i], C[size-1-i]);
+        swapValues(B[i], C[size-1-i]);
     }
     
     std::cout << "After Intraarray Swap (Crossing Array A & Array B)" << std::endl;
@@ -126,29 +142,29 @@ int main() {
 
     std::cout << std::endl;
     
-    // Even std::swap
+    // Even swapValues
     for (int i=0; i<=size-1; i+=2) {
-        std::swap(A[i], B[size-1-i]);
+        swapValues(A[i], B[size-1-i]);
     }
 
-    // Odd std::swap
+    // Odd swapValues
     //for (int i=1; i<=size-1; i+=2) {
-    //    std::swap(A[i], B[size-1-i]);
+    //    swapValues(A[i], B[size-1-i]);
     //}
     
-    std::cout << "After Intraarray std::swap (Even/Odd, need to set on backend, Only w/ A & B)" << std::endl;
+    std::cout << "After Intraarray swapValues (Even/Odd, need to set on backend, Only w/ A & B)" << std::endl;
     printArray (A, B, C, size, isTagged);
 
     return 0;
 }
    
     /*
-    // Bubble Sort Algorithm, compare 2 elements and std::swap if needed, then continue to next pair. Repeat for next array pass until sorted
+    // Bubble Sort Algorithm, compare 2 elements and swapValues if needed, then continue to next pair. Repeat for next array pass until sorted
    int bubble (int array[5], int size) {
         for (int step=0; step < size; step++) { // loop for whole array
        for (int i=0; i < size-step-1; i++) { // element stepping
            if (array[i] > array[i+1]) { // Comparing if element n is bigger than element n+1
-               std::swap(array[i], array[i+1]);
+               swapValues(array[i], array[i+1]);
            }
        }
       }
