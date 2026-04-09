@@ -14,18 +14,18 @@ class Parent {
             privateVar = priv;
             protectedVar = prot;
             publicVar = pub;
-            std::cout << "Parent Blueprint Built.\n";
+            std::cout << "\nParent Blueprint Built.\n";
         }
 
         // Virtual Destructor to ensure proper cleanup of derived class objects through base class pointers
         virtual ~Parent() {
-            std::cout << "Parent Blueprint Destroyed.\n";
+            std::cout << "\nParent Blueprint Destroyed.\n";
         }
 
         // Virtual function, Parent sets the function, but Child can override it (Polymorphism)
         virtual void display() {
             std::cout << "\n--- Parent's View ---" << std::endl;
-            std::cout << "Private Variable: " << privateVar << std::endl;
+            std::cout << "Private Variable: " << privateVar << std::endl; // Accessible in Parent class, but not in Child class (will use getter in Child)
             std::cout << "Protected Variable: " << protectedVar << std::endl; // Accessible in Child class
             std::cout << "Public Variable: " << publicVar << std::endl; // Accessible in Child class
         }
@@ -49,23 +49,23 @@ class Child : public Parent {
     // Child Constructor passing instructions to the Parent, parent handles the setup of the member variables, and child can also have its own constructor for additional setup
     Child(int priv, int prot, int pub, int childVar) : Parent(priv, prot, pub) {
         childVariable = childVar; // Additional member variable for Child class
-        std::cout << "Child Blueprint Built.\n";
+        std::cout << "\nChild Blueprint Built.\n";
     }
 
     // Virtual Child Destructor to ensure proper cleanup of Child objects when deleted through Parent pointers
     ~Child() override {
-            std::cout << "Child Blueprint Destroyed.\n";
+            std::cout << "\nChild Blueprint Destroyed.\n";
         }
 
     // Function to alter protected variable (since main cannot access it directly)
-    void alterFamilyTrust(int newValue) {
+    void alterProtectedVar(int newValue) {
             // Notice: No setter used here! We touch the variable directly.
             protectedVar = newValue; 
         }
 
     void display() override { // Public member function to display the values of member variables
         std::cout << "\n--- Child's View ---" << std::endl;
-        std::cout << "Private Variable: " << getPrivateVar() << std::endl;
+        std::cout << "Private Variable: " << getPrivateVar() << std::endl; // Accessible in Child class through getter
         std::cout << "Protected Variable: " << protectedVar << std::endl; // Accessible in Child class
         std::cout << "Public Variable: " << publicVar << std::endl; // Accessible in Child class
         std::cout << "Child Variable: " << childVariable << std::endl; // Accessible in Child class
@@ -83,7 +83,7 @@ void demonstrateSingleObject() {
 
     myObject.setPrivateVar(99); 
     myObject.publicVar = 88;    
-    myObject.alterFamilyTrust(77);
+    myObject.alterProtectedVar(77);
 
     std::cout << "\n------------------- After Changes ---------------------" << std::endl;
     myObject.Parent::display(); 
