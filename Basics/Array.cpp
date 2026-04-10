@@ -36,21 +36,16 @@ int main(){
 int main() {
     int A[10] = {11,22,3,4,999,6,8,size-1,10,11};
 
-    std::cout
-     << A[1] << std::endl;
+    std::cout << A[1] << std::endl;
 
-    std::cout
-     << "Even Index" << std::endl;
+    std::cout << "Even Index" << std::endl;
     for (int i = 0; i < 10; i=i+2) {
-      std::cout
-       << "[" << i << "] : "<<  A[i] << std::endl;
+      std::cout << "[" << i << "] : "<<  A[i] << std::endl;
     }
 
-    std::cout
-     << "Odd Index" << std::endl;
+    std::cout << "Odd Index" << std::endl;
     for (int i = 1; i < 10; i=i+2) {
-      std::cout
-       << "[" << i << "] : "<<  A[i] << std::endl;
+      std::cout << "[" << i << "] : "<<  A[i] << std::endl;
     }
     //Instead of using if function, can change the conditions in 'for loop' to;
     //Even : (int i=0; i<10; i+=2)
@@ -62,10 +57,8 @@ int main() {
     }
     float mean = sum / size(A); // size() function can get the size of array
 
-    std::cout
-     << "Sum of all values : " << sum << std::endl;
-    std::cout
-     << "Mean : " << mean << std::endl;
+    std::cout << "Sum of all values : " << sum << std::endl;
+    std::cout << "Mean : " << mean << std::endl;
     
     return 0;
 }
@@ -98,8 +91,7 @@ int main() {
     bool isTagged = true;
 
     std::cout << "Before Movement" << std::endl;
-    printArraySwap
- (A, B, C, size, isTagged);
+    printArraySwap(A, B, C, size, isTagged);
 
     std::cout << std::endl;
 
@@ -109,8 +101,7 @@ int main() {
     }
 
     std::cout << "After Copying" << std::endl;
-    printArraySwap
- (A, B, C, size, isTagged);
+    printArraySwap(A, B, C, size, isTagged);
 
     std::cout << std::endl;
 
@@ -119,10 +110,8 @@ int main() {
         swapValues(C[i], B[i]);
     }
 
-    std::cout
-     << "After Swapping Between Arrays" << std::endl;
-    printArraySwap
- (A, B, C, size, isTagged);
+    std::cout << "After Swapping Between Arrays" << std::endl;
+    printArraySwap(A, B, C, size, isTagged);
     isTagged = false;
 
     std::cout << std::endl;
@@ -131,10 +120,8 @@ int main() {
         swapValues(A[i], A[i+1]);
     }
     
-    std::cout
-     << "After Second Swap" << std::endl;
-    printArraySwap
- (A, B, C, size, isTagged);
+    std::cout << "After Second Swap" << std::endl;
+    printArraySwap(A, B, C, size, isTagged);
     
     std::cout << std::endl;
     
@@ -143,8 +130,7 @@ int main() {
     }
     
     std::cout << "After Intraarray Swap (Crossing Array A & Array B)" << std::endl;
-    printArraySwap
- (A, B, C, size, isTagged);
+    printArraySwap(A, B, C, size, isTagged);
 
     std::cout << std::endl;
     
@@ -159,8 +145,7 @@ int main() {
     //}
     
     std::cout << "After Intraarray swapValues (Even/Odd, need to set on backend, Only w/ A & B)" << std::endl;
-    printArraySwap
- (A, B, C, size, isTagged);
+    printArraySwap(A, B, C, size, isTagged);
 
     return 0;
 }
@@ -197,30 +182,25 @@ int main() {
     int array[5] = {3,2,5,1,4};
     int size = 5;
 
-    std::cout
-     << "Unsorted Array : \n";
+    std::cout << "Unsorted Array : \n";
     for (int i=0; i<=4; i++) {
-        std::cout
-         << array[i] <<" \t";
+        std::cout << array[i] <<" \t";
     }
-    std::cout
-     << std::endl;
+    std::cout << std::endl;
 
     // Change the algorithm 
     insertion(array, size);
 
-   std::cout
-    << "Sorted Array : \n";
+   std::cout << "Sorted Array : \n";
     for (int i=0; i<=4; i++) {
-        std::cout
-         << array[i] <<" \t";
+        std::cout << array[i] <<" \t";
     }
     return 0;
 }
     */
 
 // Array Rotation (Left Rotation)
-int* arrayRotationLeft(int array[], int size, int step) {
+void arrayRotationLeft(int array[], int size, int step) {
     for (int i=0; i<step; i++) {
         int temp = array[0]; // Temporary variable to hold the first element of the array during rotation
         // Shift all elements to the left by one position
@@ -229,7 +209,6 @@ int* arrayRotationLeft(int array[], int size, int step) {
         }
         array[size-1] = temp; // Place the first element at the end of the array
     }
-    return array;
 }
 
 // Array Rotation (Right Rotation)
@@ -275,8 +254,8 @@ void printArray(int array[], int size) {
 // Dynamic Arrays
 int main() {
     int size; // Variable to hold the size of the array
-    int leftStep = 2;
-    int rightStep = 2;
+    int leftStep, rightStep, newValue, pos; // Variables for rotation steps, new value to insert, and position for insertion/deletion
+
     std::cout << "Enter the array size: ";
     std::cin >> size;
 
@@ -291,20 +270,25 @@ int main() {
     std::cout << "\nBefore Rotation: " << std::endl;
     printArray(A, size);
 
+    std::cout << "\nEnter steps for left rotation: ";
+    std::cin >> leftStep;
+
     arrayRotationLeft(A, size, leftStep);
 
-    std::cout << "\nAfter Left Rotation(2): " << std::endl;
+    std::cout << "\nAfter Left Rotation(" << leftStep << "): " << std::endl;
     printArray(A, size);
+
+    std::cout << "\nEnter steps for right rotation: ";
+    std::cin >> rightStep;
 
     arrayRotationRight(A, size, rightStep);
 
-    std::cout << "\nAfter Right Rotation(2): " << std::endl;
+    std::cout << "\nAfter Right Rotation(" << rightStep << "): " << std::endl;
     printArray(A, size);
 
-    int newValue;
     std::cout << "\nEnter new value to be added: ";
     std::cin >> newValue;
-    int pos;
+
     std::cout << "Enter the index to be added on: ";
     std::cin >> pos;
 
@@ -322,4 +306,5 @@ int main() {
     printArray(A, size);
 
     delete[] A;
+    return 0;
 }
