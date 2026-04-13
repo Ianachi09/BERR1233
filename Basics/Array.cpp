@@ -197,10 +197,11 @@ int main() {
     }
     return 0;
 }
-    */
+*/
 
-// Array Rotation (Left Rotation)
-void arrayRotationLeft(int array[], int size, int step) {
+/*
+   // Array Rotation (Left Rotation)
+   void arrayRotationLeft(int array[], int size, int step) {
     for (int i=0; i<step; i++) {
         int temp = array[0]; // Temporary variable to hold the first element of the array during rotation
         // Shift all elements to the left by one position
@@ -306,5 +307,56 @@ int main() {
     printArray(A, size);
 
     delete[] A;
+    return 0;
+}
+    */
+
+    #include <iomanip>
+
+    // Array Printing Function
+void print3Array(int array1[],int array2[],int array3[]) {
+    for (int i=0; i<20; i++) {
+        if (i<10) {
+            std::cout << "A[" << i << "]: " << array1[i] << std::setw(15) << "B[" << i << "]: " << array2[i] << std::endl;
+        } else {
+            std::cout << std::setw(23) << "B[" << i << "]: " << array2[i] << std::setw(15) << "C[" << i-10 << "]: " << array3[i-10] << std::endl;
+        }
+    }
+}
+
+int main() {
+
+    int A[10] = {-1,-2,-3,-4,-5,-6,-7,-8,-9,-10};
+    int B[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    int C[10] = {-11,-12,-13,-14,-15,-16,-17,-18,-19,-20};
+    int size1 = 10;
+    int size2 = 20;
+
+    std::cout<<"Before"<<std::endl;
+    print3Array(A,B,C);
+
+    std::cout<<std::endl;
+    
+    // For A & B Rotation
+    int temp1 = A[size1-1];
+    int temp2 = B[0];
+
+    for (int i=0; i<size1; i++) {
+        A[size1-1-i] = A[size1-2-i];
+        B[i] = B[i+1];
+    }
+
+    A[0] = temp2;
+    B[size1-1] = temp1;
+
+
+    // For B & C Swap
+    for(int i=10; i<size2; i++) {
+        swapValues(B[i],C[size2-1-i]);
+    }
+
+    std::cout<<"After"<<std::endl;
+    print3Array(A,B,C);
+
     return 0;
 }
