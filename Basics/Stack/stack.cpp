@@ -19,17 +19,17 @@ class Stack {
 };
 
 Stack::Stack() {
-    int size = 5;
+    size = 5;
     array = new int[size];
     currentPos = -1;
-    std::cout << "Stack with size " << size << " Created.\n";
+    std::cout << "Stack with size " << size << "(Default) created.\n";
 }
 
 Stack::Stack(int size) {
     this -> size = size;
     array = new int[size];
     currentPos = -1;
-    std::cout << "Stack with size " << size << " Created.\n";
+    std::cout << "Stack with size " << size << " created.\n";
 }
 
 Stack::~Stack() {
@@ -75,17 +75,39 @@ int Stack::Top() {
 }
 
 void Stack::Display() {
-    std::cout << "=========Display of Stack========= \n";
-    for(int i=0; i<size; i++) {
+    std::cout << "\n=========Display of Stack========= \n";
+    if (currentPos == -1) {
+        std::cout << "Stack is empty\n";
+    }
+    for(int i=0; i<=currentPos; i++) {
         std::cout << " A[" << i << "]: " << array[i] << std::endl;
     }
+    std::cout << "==================================\n";
 }
 void Stack::Clear() {
     currentPos=-1;
 }
 
 int main() {
+    //int size = 6;
+    Stack stack1;
 
+    stack1.Push(10);
+    stack1.Push(20);
+    stack1.Push(30);
+    stack1.Push(40);
+    stack1.Push(70);
+    //stack1.Push(80);
+    
+    stack1.Display();
 
+    std::cout << stack1.Top() << std::endl;
+    std::cout << stack1.Pop() << std::endl;
+    std::cout << stack1.Top() << std::endl;
+
+    
+    stack1.Display();
+    stack1.Clear();
+    stack1.Display();
     return 0;
 }
