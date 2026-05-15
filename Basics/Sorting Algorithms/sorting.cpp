@@ -8,7 +8,7 @@ void swapValues(int &num1, int &num2) {
 }
 
 // Bubble Sort
-//
+// Algorithm that sorts an array from the lowest value to the highest value
 // https://visualgo.net/en/sorting?create=4%2C20%2C35%2C26%2C23%2C25%2C13%2C4%2C9%2C25&mode=Bubble
 void BubbleSort(int array[], int size) {
     for (int i=0; i<size; i++) { // Main loop
@@ -21,7 +21,7 @@ void BubbleSort(int array[], int size) {
 }
 
 // Selection Sort
-//
+// Algorithm that finds the lowest value in an array and moves it to the front of the array
 // https://visualgo.net/en/sorting?create=38%2C8%2C36%2C42%2C4%2C25%2C50%2C10%2C38%2C27&mode=Selection
 void SelectionSort(int array[], int size) {
     int smallest;
@@ -38,7 +38,8 @@ void SelectionSort(int array[], int size) {
 }
 
 // Insertion Sort
-//
+// Algorithm  that uses one part of the array to hold the sorted values, and the other part of the array to hold values that are not sorted yet.
+// It takes one value at a time from the unsorted part of the array and puts it into the right place in the sorted part of the array, until the array is sorted.
 // https://visualgo.net/en/sorting?create=17%2C39%2C41%2C29%2C49%2C7%2C24%2C47%2C16%2C10&mode=Insertion
 void InsertionSort(int array[], int size) {
     int temp;
@@ -58,9 +59,8 @@ void InsertionSort(int array[], int size) {
     }
 }
 
-//
-//
-//
+// Merge Sort
+// Divide-And-Conquer algorithm that sorts an array by first breaking it down into smaller arrays, and then building the array back together the correct way so that it is sorted.
 // The Combiner
 void Merge(int array [], int left, int mid, int right) {
     int leftSize = mid - left + 1; // Left side size
@@ -118,6 +118,7 @@ void MergeSort(int array[], int left, int right) {
     }
 }
 
+// Main function
 int main() {
     std::cout << "Hello" << std::endl;
     return 0;
