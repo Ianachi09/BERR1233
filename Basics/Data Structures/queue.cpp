@@ -66,7 +66,7 @@ void Queue::Insert(int value) {
     } else {
         rear++;
     }
-
+    
     // Assigns rear slot with value given and increments the count
     array[rear] = value;
     count++;

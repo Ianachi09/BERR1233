@@ -2,9 +2,16 @@
 
 // Function to swap values (simplify the code)
 void swapValues(int &num1, int &num2) {
-  int temp = num1;
-  num1 = num2;
-  num2 = temp;
+    int temp = num1;
+    num1 = num2;
+    num2 = temp;
+}
+
+// Functions to display arrays
+void DisplayArray(int array[], int size) {
+    for (int i=0; i<size; i++) {
+        std::cout << "A[" << i << "]: " << array[i] << std::endl;
+    }
 }
 
 // Bubble Sort
@@ -53,14 +60,14 @@ void InsertionSort(int array[], int size) {
             array[j+1] = array [j];
             j--;
         }
-
+        
         array[j+1] = temp; // After breaking the while loop, complete the swap
-
     }
 }
 
 // Merge Sort
 // Divide-And-Conquer algorithm that sorts an array by first breaking it down into smaller arrays, and then building the array back together the correct way so that it is sorted.
+// https://visualgo.net/en/sorting?create=34%2C50%2C25%2C46%2C37%2C23%2C11%2C23%2C16%2C18&mode=Merge
 // The Combiner
 void Merge(int array [], int left, int mid, int right) {
     int leftSize = mid - left + 1; // Left side size
@@ -118,8 +125,92 @@ void MergeSort(int array[], int left, int right) {
     }
 }
 
+// Quick Sort
+// Divide and Conquer algorithm that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array.
+// https://visualgo.net/en/sorting?create=23%2C36%2C21%2C40%2C35%2C26%2C20%2C10%2C3%2C47&mode=Quick
+int Partition(int array[], int low, int high) {
+    int up, down, pivot;
+
+    pivot = array[low]; // Choosing pivot to rotate the partitions (Can be any elements)
+    up = low;
+    down = high;
+
+    while (up<down) { 
+        while ((array[up] <= pivot) && (up<high)) { // Move 'up' to the right as long as elements are <= pivot
+            up++;
+        }
+        
+        while (array[down] > pivot) { // Move 'down' to the left as long as elements are > pivot
+            down--;
+        }
+
+        if (up<down) { // If the pointers haven't crossed, swap the out-of-place elements
+            swapValues(array[down], array[up]);
+        }
+    }
+
+    // After the rest of elements is sorted, place the pivot in its correct sorted position
+    array[low] = array[down];
+    array[down] = pivot;
+    return (down);
+}
+
+void QuickSort(int array[], int low, int high) {
+    int part;
+    if (low<high) { // Check if theres more than one files, if it is then loop these functions
+        part = Partition(array,low,high);
+
+        // Recursive (called until theres only one item left)
+        QuickSort(array, low, part-1); // Left side
+        QuickSort(array, part+1, high); // Right side
+    }
+}
+
 // Main function
 int main() {
-    std::cout << "Hello" << std::endl;
+    int A[10] = {5,10,80,51,42,36,84,96,1,2};
+    int size = 10;
+    int selection;
+    
+    std::cout << "Before Sorted:\n";
+    DisplayArray(A, size);
+
+    std::cout << "Choose a sorting algorithm:\n";
+    std::cout << "[1] Bubble Sort\n";
+    std::cout << "[2] Selection Sort\n";
+    std::cout << "[3] Insertion Sort\n";
+    std::cout << "[4] Merge Sort\n";
+    std::cout << "[5] Quick Sort\n";
+    std::cin >> selection;
+
+    switch (selection) {
+        case 1:
+        BubbleSort(A, size);
+        break;
+
+        case 2:
+        SelectionSort(A, size);
+        break;
+
+        case 3:
+        InsertionSort(A, size);
+        break;
+
+        case 4:
+        MergeSort(A, 0, size-1);
+        break;
+
+        case 5:
+        QuickSort(A, 0, size-1);
+        break;
+
+        default:
+        std::cout << "Invalid Choice.\n";
+        break;
+    }
+
+    std::cout << "After Sorted:\n";
+    DisplayArray(A, size);
+
     return 0;
 }
