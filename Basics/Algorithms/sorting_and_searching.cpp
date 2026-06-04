@@ -188,6 +188,7 @@ int BinarySearch(int data[], int size, int key) {
 
     while(left <= right) {
         midpoint = (left+right)/2;
+        std::cout << "Midpoint :" << midpoint << std::endl;
         
         if(key==data[midpoint]) {
             return midpoint;
