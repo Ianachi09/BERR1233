@@ -166,11 +166,45 @@ void QuickSort(int array[], int low, int high) {
     }
 }
 
+// Searching Algorithms
+// Linear Search
+// Iterative searching algorithms that searches the whole data and compares with the key
+int LinearSearch(int data[], int size, int key) {
+    for (int i=0; i<size; i++) {
+        if (data[i] == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Binary Search
+// Divide-And-Conquer searching algorithms that uses a midpoint to cut the searching time in half by comparing the key with midpoint instead
+// Note: The data must be sorted before doing this algorithm
+int BinarySearch(int data[], int size, int key) {
+    int left, midpoint, right;
+    left = 0;
+    right = size-1;
+
+    while(left <= right) {
+        midpoint = (left+right)/2;
+        
+        if(key==data[midpoint]) {
+            return midpoint;
+        } else if (key>data[midpoint]) {
+            left = midpoint + 1;
+        } else {
+            right = midpoint - 1;
+        }
+    }
+    return -1;
+}
+
 // Main function
 int main() {
     int A[10] = {5,10,80,51,42,36,84,96,1,2};
     int size = 10;
-    int selection;
+    int selection, key, result;
     
     std::cout << "Before Sorted:\n";
     DisplayArray(A, size);
@@ -211,6 +245,35 @@ int main() {
 
     std::cout << "After Sorted:\n";
     DisplayArray(A, size);
+
+    std::cout << "Enter the key (data to be searched)\n";
+    std::cin >> key;
+
+    std::cout << "Choose a searching algorithm:\n";
+    std::cout << "[1] Linear Search\n";
+    std::cout << "[2] Binary Search\n";
+    std::cin >> selection;
+
+    switch (selection) {
+        case 1:
+        result = LinearSearch(A, size, key);
+        break;
+
+        case 2:
+        result = BinarySearch(A, size, key);
+        break;
+
+        default:
+        std::cout << "Invalid Choice.\n";
+        result = -1;
+        break;
+    }
+
+    if (result != -1) {
+        std::cout << "Success! The key " << key << " was found at index " << result<< " of the sorted array.\n";
+    } else {
+        std::cout << "The key " << key << " was not found in the array.\n";
+    }
 
     return 0;
 }
