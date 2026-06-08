@@ -14,6 +14,7 @@ void DisplayArray(int array[], int size) {
     }
 }
 
+// Sorting Algorithms
 // Bubble Sort
 // Algorithm that sorts an array from the lowest value to the highest value
 // https://visualgo.net/en/sorting?create=4%2C20%2C35%2C26%2C23%2C25%2C13%2C4%2C9%2C25&mode=Bubble

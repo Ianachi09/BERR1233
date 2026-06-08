@@ -76,7 +76,7 @@ void List::InsertInOrder(int val) {
     // Assigning temp to current node
     Temp -> Next = current;
 
-    // Edge case, check if previous exists, if does point previous to temp, else set the temp node as the head(first node) 
+    // Edge case, check if previous exists, if does, point previous to temp, else set the temp node as the head(first node) 
     if (previous) {
         previous -> Next = Temp;
     } else {
