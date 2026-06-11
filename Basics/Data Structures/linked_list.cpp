@@ -6,7 +6,7 @@ struct ListNode {
     ListNode *Next; // Addresses for next node
 };
 
-typedef ListNode* ListNodePointer; // Alias for "ListNode*" (makes the code readable)
+typedef ListNode* ListNodePointer; // Alias for "ListNode*" (makes the code readable), ListNode* keeps track of addresses
 
 class List {
     public: // Constructor & Deconstructor

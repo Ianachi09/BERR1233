@@ -1,0 +1,18 @@
+Pre
+A B D I J K E L M C F N O P Q G R S T
+
+In
+D J I K B M L E A F P O Q N C S R T G
+
+Post
+J K I D M L E B P Q O N F S T R G C A
+
+
+Pre (PARENT > NODE)
+A B D E F G C H I K J
+
+In (LEFT TO RIGHT)
+E D G F B A H K I J C
+
+Post (DELETION) (CHILD > PARENT)
+E G F D B K J I H C A
