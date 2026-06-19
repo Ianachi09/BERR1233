@@ -21,19 +21,19 @@ class Tree {
     private:
     TreeNodePointer Root;
     void InsertTree (TreeNodePointer& Root, int Val);
-    void DisplayTree (TreeNodePointer Root);
+    void DisplayTree (TreeNodePointer Root, int choice);
     bool SearchTree (TreeNodePointer Root, int Val);
     void DeleteCompleteTree (TreeNodePointer Root);
 };
 
 // Constructor
 Tree::Tree(){
-    Root = NULL; // Sets to NULL since its empty
+    Root = NULL; // Sets to NULL since its empty the first timex
 }
 
 // Deconstructor
 Tree::~Tree(){
-    DeleteCompleteTree(Root); // Calls the helper function to delete the whole tree
+    DeleteCompleteTree(Root); // Calls the helper function to delete the whole  tree
 }
 
 // Deletion Function
@@ -78,18 +78,49 @@ void Tree::InsertTree(TreeNodePointer& Root, int Val) {
 
 // Main Display
 void Tree::Display() {
-    DisplayTree(Root);
-    std::cout << std::endl;
+    int choice;
+    std::cout << "What order to show?\n";
+    std::cout << "[1] Pre-Order\n";
+    std::cout << "[2] In-Order\n";
+    std::cout << "[3] Post-Order\n";
+    std::cin >> choice;
+
+    DisplayTree(Root, choice);
 }
 
-// Display Function (In-Order)
-void Tree::DisplayTree(TreeNodePointer Root) {
-    if (Root != NULL) { // If node is not empty. . .
-        DisplayTree(Root -> Left); // Move to the left node (Recursion until leftmost node)
-        std::cout << Root -> value << " "; // Then print the value
-        DisplayTree(Root -> Right);  // Move to the right (Repeats the previous recursions)
+// Display Function
+void Tree::DisplayTree(TreeNodePointer Root, int choice) {
+    switch (choice) {
+        case 1: // Pre-Order
+        if (Root != NULL) { // If node is not empty. . .
+            std::cout << Root -> value << " "; // Then print the value
+            DisplayTree(Root -> Left, choice); // Move to the left node (Recursion until leftmost node)
+            DisplayTree(Root -> Right, choice);  // Move to the right (Repeats the previous recursions)
+        }
+        break;
+
+        case 2: // In-Order
+        if (Root != NULL) { // If node is not empty. . .
+            DisplayTree(Root -> Left, choice); // Move to the left node (Recursion until leftmost node)
+            std::cout << Root -> value << " "; // Then print the value
+            DisplayTree(Root -> Right, choice);  // Move to the right (Repeats the previous recursions)
+        }
+        break;
+
+        case 3: // Post-Order
+        if (Root != NULL) { // If node is not empty. . .
+            DisplayTree(Root -> Left, choice); // Move to the left node (Recursion until leftmost node)
+            DisplayTree(Root -> Right, choice);  // Move to the right (Repeats the previous recursions)
+            std::cout << Root -> value << " "; // Then print the value
+        }
+        break;
+        
+        default:
+        break;
+
     }
 }
+
 
 // Main Search
 bool Tree::Search(int Val) {
@@ -116,7 +147,7 @@ bool Tree::SearchTree(TreeNodePointer Root, int Val) {
 
 
 int main () {
-    Tree T1;
+    /* Tree T1;
     int key;
 
     T1.Insert(5);
@@ -130,6 +161,7 @@ int main () {
 
     T1.Display();
 
+    // Searching Sections
     std::cout << "Enter the value to search: " << std::endl;
     std::cin >> key;
 
@@ -148,5 +180,16 @@ int main () {
         T2.Insert(i);
     }
 
-    T2.Display();
+    T2.Display(); */
+
+    Tree AB;
+    AB.Insert(15);
+    AB.Insert(30);
+    AB.Insert(25);
+    AB.Insert(5);
+    AB.Insert(12);
+    AB.Insert(7);
+    AB.Insert(1);
+
+    AB.Display();
 }

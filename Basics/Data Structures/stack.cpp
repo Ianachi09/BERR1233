@@ -46,7 +46,7 @@ Stack::~Stack() {
 
 // Insertion
 void Stack::Push(int value) {
-    if (currentPos < size-1) { // Checks if its empty (size-1 because index starts with 0), then increments current position by 1 and assigns the value to the slot
+    if (currentPos < size-1) { // Checks if its full (size-1 because index starts with 0), then increments current position by 1 and assigns the value to the slot
         currentPos+=1;
         array[currentPos] = value;
     } else { // Else (array is full) sends an error message for stack overflow (no way to assign the values into full memory)
